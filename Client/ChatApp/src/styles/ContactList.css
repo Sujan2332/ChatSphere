@@ -1,0 +1,92 @@
+.ContactList {
+    background-color: #131324;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 320px;
+    max-width: 500px;
+    margin: 0 auto;
+    height: 100%;
+    border: 1px solid white;
+  }
+  .ContactList .logout{
+    background: none;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 5px;
+    padding-bottom: 0px;
+    position: fixed;
+    left: 270px;
+    cursor: pointer;
+  }
+  .ContactList .logout i{
+    background-color: none;
+    /* border: 2px solid red; */
+    font-size: 22px;
+  }
+  .ContactList h2, .ContactList h3 {
+    color: white;
+    font-weight: 600;
+  }
+  
+  .ContactList h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .ContactList h3 {
+    font-size: 20px;
+    margin: 20px 0 10px 0;
+    text-decoration: underline;
+  }
+  
+  .ContactList ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .ContactList li {
+    background-color: #0A0A13;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+  }
+  
+  .ContactList li button {
+    background-color: #4E0EFF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .ContactList li button:hover {
+    background-color: #009e82;
+    transform: scale(1.05);
+  }
+  
+  .ContactList li button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+  
+  .ContactList li button:focus {
+    outline: none;
+  }
+  .availableusers{
+    gap: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .availableusers i{
+    font-size: 30px;
+  }
