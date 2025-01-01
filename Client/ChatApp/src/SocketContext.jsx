@@ -6,8 +6,10 @@ const SocketContext = createContext();
 const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
+  const backend = import.meta.env.VITE_BACKEND;
+
   useEffect(() => {
-    const socketConnection = io('http://localhost:5000'); // Adjust to your backend URL
+    const socketConnection = io(`${backend}`); // Adjust to your backend URL
     setSocket(socketConnection);
 
     return () => {

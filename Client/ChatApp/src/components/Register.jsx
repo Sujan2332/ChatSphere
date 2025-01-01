@@ -64,7 +64,7 @@ ChatSphere</h1>
         onChange={(e) => setMobile(e.target.value)}
       />
       <button onClick={handleRegister}>Register</button>
-      <h3>Already Existing User ? <a href="/login">Login</a></h3>
+      <h3>Already Existing User ? <a href="/#/login">Login</a></h3>
       {error && <p>{error}</p>}
     </div>
     </div>

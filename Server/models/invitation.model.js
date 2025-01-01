@@ -25,6 +25,6 @@ const invitationSchema = new mongoose.Schema({
         type:Date,
         default:Date.now
     }
-})
+},{ collection: 'invitations' })
 
 module.exports = mongoose.model("Invitation",invitationSchema)

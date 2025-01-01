@@ -16,6 +16,6 @@ const chatSchema = new mongoose.Schema({
         },
     ],
     updatedAt:{type:Date,default:Date.now}
-})
+},{ collection: 'chats' })
 
 module.exports = mongoose.model("Chat",chatSchema)

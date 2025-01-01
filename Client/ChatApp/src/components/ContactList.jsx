@@ -12,7 +12,7 @@ const ContactList = ({ token,setUser }) => {
 
   const handleLogout = () => {
     setUser(null); // Clear the user state
-    navigate('/login'); // Navigate to login page
+    navigate('/#/login'); // Navigate to login page
   };
 
   // console.log(availableUsers)

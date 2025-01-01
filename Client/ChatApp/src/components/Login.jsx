@@ -51,7 +51,7 @@ const Login = ({ setUser }) => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button onClick={handleLogin}>Login</button>
-      <h3>Dont You Have An Account ? <a href="/register">Signup</a></h3>
+      <h3>Dont You Have An Account ? <a href="/#/register">Signup</a></h3>
       {error && <p>{error}</p>}
     </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom'; // HashRouter
+
 import Login from './components/Login';
 import Register from './components/Register';
 import ContactList from './components/ContactList';
@@ -16,7 +17,7 @@ const App = () => {
           <>
             <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/register" element={<Register setUser={setUser} />} />
-            <Route path="*" element={<Navigate to="/login" />} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
           </>
         )}
 
@@ -26,18 +27,16 @@ const App = () => {
             <Route
               path="/"
               element={
-                <div style={{ display: 'flex',flexDirection:"row", height: '100vh' }}>
-                  <div style={{}}>
-                    <ContactList token={user} setUser={setUser}/>
+                <div style={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
+                  <div>
+                    <ContactList token={user} setUser={setUser} />
                   </div>
-
                   {/* Right side: Chat Room */}
                   <div style={{ flex: 2 }}>
                     {/* This Outlet will be replaced with the ChatRoom component */}
                     <Outlet />
                   </div>
                 </div>
-
               }
             >
               <Route path="/chat/:chatId" element={<ChatRoom token={user} />} />
