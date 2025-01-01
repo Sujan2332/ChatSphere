@@ -14,14 +14,15 @@ const ChatRoom = ({ token }) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [participants, setParticipants] = useState([]);
-  
   const firstRender = useRef(true);  // Track first render to avoid socket listener re-setup
+
+  const backend = import.meta.env.VITE_BACKEND;
 
   useEffect(() => {
     // Fetch chat and participants details along with messages
     const fetchMessages = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/chats/${chatId}/messages`, {
+        const response = await axios.get(`${backend}/api/chats/${chatId}/messages`, {
           headers: { Authorization: `Bearer ${token}` }
         });
 
@@ -80,7 +81,7 @@ const ChatRoom = ({ token }) => {
       socket.emit('sendMessage', { roomId: chatId, content: message, sender: userId });
 
       // Send the message to backend (to be saved in the database)
-      await axios.post('http://localhost:5000/api/chats/message', { chatId, text: message }, {
+      await axios.post(`${backend}/api/chats/message`, { chatId, text: message }, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

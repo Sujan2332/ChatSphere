@@ -8,6 +8,8 @@ const ContactList = ({ token,setUser }) => {
   const [availableUsers, setAvailableUsers] = useState([]);
   const navigate = useNavigate();
 
+  const backend = import.meta.env.VITE_BACKEND;
+
   const handleLogout = () => {
     setUser(null); // Clear the user state
     navigate('/login'); // Navigate to login page
@@ -18,12 +20,12 @@ const ContactList = ({ token,setUser }) => {
   useEffect(() => {
     const fetchContactsAndUsers = async () => {
       try {
-        const contactsResponse = await axios.get('http://localhost:5000/api/users/contacts', {
+        const contactsResponse = await axios.get(`${backend}/api/users/contacts`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setContacts(contactsResponse.data.contacts);
 
-        const usersResponse = await axios.get('http://localhost:5000/api/users/available', {
+        const usersResponse = await axios.get(`${backend}/api/users/available`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAvailableUsers(usersResponse.data.users);
@@ -39,7 +41,7 @@ const ContactList = ({ token,setUser }) => {
   const sendInvitation = async (mobile) => {
     try {
       await axios.post(
-        'http://localhost:5000/api/invitations/send',
+        `${backend}/api/invitations/send`,
         { mobile },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -55,7 +57,7 @@ const ContactList = ({ token,setUser }) => {
   const startChat = async (userId, receiverName) => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/chats/createOrFetch',
+        `${backend}/api/chats/createOrFetch`,
         { participantId: userId },
         {
           headers: { Authorization: `Bearer ${token}` },

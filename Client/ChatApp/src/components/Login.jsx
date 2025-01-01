@@ -6,9 +6,11 @@ const Login = ({ setUser }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const backend = import.meta.env.VITE_BACKEND;
+
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/api/users/login', { emailOrMobile, password });
+      const response = await axios.post(`${backend}/api/users/login`, { emailOrMobile, password });
       setUser(response.data.token);
     } catch (err) {
       setError('Invalid credentials');

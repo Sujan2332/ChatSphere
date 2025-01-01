@@ -8,9 +8,11 @@ const Register = ({ setUser }) => {
   const [mobile, setMobile] = useState('');
   const [error, setError] = useState('');
 
+  const backend = import.meta.env.VITE_BACKEND;
+
   const handleRegister = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/api/users/register', { name, email, password, mobile });
+      const response = await axios.post(`${backend}/api/users/register`, { name, email, password, mobile });
       setUser(response.data.token);
     } catch (err) {
       setError('Registration failed');
