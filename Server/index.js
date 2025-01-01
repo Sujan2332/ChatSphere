@@ -30,7 +30,7 @@ mongoose
     console.error("MongoDB Connection Failed:",err.message)
     process.exit(1)
 })
-
+console.log(process.env.MONGO_URI);
 app.use("/api/users",userRoutes)
 app.use("/api/chats",chatRoutes)
 app.use("/api/invitation",invitationRoutes)
