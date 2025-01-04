@@ -9,7 +9,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'My Fullscreen App',
+        name: 'ChatSphere',
         short_name: 'MyApp',
         start_url: '/',
         display: 'standalone',
