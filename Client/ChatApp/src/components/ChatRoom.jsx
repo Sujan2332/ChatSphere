@@ -21,14 +21,23 @@ const ChatRoom = () => {
   const backend = import.meta.env.VITE_BACKEND;
 
   const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null); // Reference for the messages container
+  const inputRef = useRef(null);
 
   const navigate = useNavigate();
 
   // Function to scroll to the bottom
   const scrollToBottom = () => {
-    if (messagesEndRef.current) {
+    if (messagesEndRef.current && isAtBottom()) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
+  };
+
+  // Check if the user is already at the bottom of the chat container
+  const isAtBottom = () => {
+    if (!messagesContainerRef.current) return false;
+    const { scrollHeight, scrollTop, clientHeight } = messagesContainerRef.current;
+    return scrollHeight - scrollTop === clientHeight;
   };
 
   useEffect(() => {
@@ -127,6 +136,25 @@ const ChatRoom = () => {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    // Handle resize or keyboard appearance on mobile devices
+    const handleKeyboardVisibility = () => {
+      // Wait for the keyboard to be displayed and adjust the scroll position
+      if (window.innerHeight < 500 && inputRef.current) {
+        // Adjust the scroll position to keep the input bar visible when keyboard is open
+        inputRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }
+    };
+
+    // Listen for resize events (useful for detecting when the keyboard appears)
+    window.addEventListener('resize', handleKeyboardVisibility);
+    
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener('resize', handleKeyboardVisibility);
+    };
+  }, []);
+
   return (
     <div className="chat-container">
       <div className="chat-header">
@@ -155,6 +183,7 @@ const ChatRoom = () => {
       )}
       <div className="input-container">
         <input
+          ref={inputRef}
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
