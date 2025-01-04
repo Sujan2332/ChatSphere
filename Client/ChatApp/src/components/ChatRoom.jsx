@@ -126,7 +126,7 @@ const ChatRoom = () => {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    // scrollToBottom();
   }, [messages]);
 
   useEffect(() => {
