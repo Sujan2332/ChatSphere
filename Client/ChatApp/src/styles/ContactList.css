@@ -105,6 +105,11 @@
     border-bottom: 2px solid white;
     margin-bottom: 10px;
     padding: 10px;
+    background: #4400ff;
+    transition: 0.3s ease-in-out;
+  }
+  .user:hover{
+    background: #009e82;
   }
 
   @media (max-width: 768px){

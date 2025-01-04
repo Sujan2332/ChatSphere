@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom'; // HashRouter
-import profile from "C:/reactjs1/ChatApp/Client/ChatApp/src/assets/profile.jpg"
-
+import profile from "./assets/profile/jpg"
 import Login from './components/Login';
 import Register from './components/Register';
 import ContactList from './components/ContactList';
@@ -77,7 +76,7 @@ const DesktopLayout = ({ user, setUser }) => {
   const isWelcomePage = location.pathname === '/';
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
+    <div style={{ display: 'flex', flexDirection: 'row', height: '100vh' ,background:"black"}}>
       <div style={{ borderRight: '1px solid #ccc' }}>
         <ContactList token={user} setUser={setUser} />
       </div>
@@ -98,8 +97,8 @@ const DesktopLayout = ({ user, setUser }) => {
             <h1 style={{ color: 'white', marginTop: '-100px' }}>
               Welcome, {user.name} {/* Use the 'user' state directly */}
             </h1>
-            <img src={user.avatar ? user.name : profile} alt="User Avatar" width="100px" />
-            <h2 style={{ marginTop: '30px' }}>Please select a chat to start messaging.</h2>
+            <img src={user.avatar ? user.avatar : profile} alt="User Avatar" width="100px" />
+            <h2 style={{ marginTop: '30px' }}>Please Select a Chat  To Start Messaging.</h2>
           </div>
         ) : (
           <Outlet />
