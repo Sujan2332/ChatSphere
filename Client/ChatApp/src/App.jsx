@@ -8,6 +8,27 @@ import ChatRoom from './components/ChatRoom';
 import Robot from '../src/assets/robot.gif';
 
 const App = () => {
+
+  useEffect(() => {
+    const enableFullscreen = () => {
+      const docElm = document.documentElement;
+
+      // Try to enter fullscreen automatically
+      if (docElm.requestFullscreen) {
+        docElm.requestFullscreen();
+      } else if (docElm.mozRequestFullScreen) {
+        docElm.mozRequestFullScreen();
+      } else if (docElm.webkitRequestFullscreen) {
+        docElm.webkitRequestFullscreen();
+      } else if (docElm.msRequestFullscreen) {
+        docElm.msRequestFullscreen();
+      }
+    };
+
+    // Attempt fullscreen after page load
+    enableFullscreen();
+  }, []);
+  
   const [user, setUser] = useState(null); // User token
   const [isMobile, setIsMobile] = useState(false);
 
