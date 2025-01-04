@@ -12,23 +12,6 @@ const App = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const hideTopBar = () => {
-      setTimeout(() => {
-        window.scrollTo(0, 1); // Scroll slightly to hide the top bar
-      }, 100);
-    };
-
-    hideTopBar();
-
-    // Reapply on orientation change
-    window.addEventListener("orientationchange", hideTopBar);
-
-    return () => {
-      window.removeEventListener("orientationchange", hideTopBar);
-    };
-  }, []);
-
-  useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser)); // Set the user state from localStorage on initial load
