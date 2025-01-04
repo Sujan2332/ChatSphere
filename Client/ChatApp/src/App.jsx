@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom'; // HashRouter
-import profile from "./assets/profile/jpg"
+import profile from "./assets/profile.jpg"
 import Login from './components/Login';
 import Register from './components/Register';
 import ContactList from './components/ContactList';
