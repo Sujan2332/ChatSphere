@@ -23,6 +23,14 @@ const ChatRoom = () => {
   const messagesEndRef = useRef(null);
   const messagesContainerRef = useRef(null); // Reference for the messages container
   const inputRef = useRef(null);
+  const containerRef = useRef(null); // Create a reference for the message container
+
+  useEffect(() => {
+    // Scroll to the bottom of the container whenever messages change
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  }, [messages]); 
 
   const navigate = useNavigate();
 
@@ -162,7 +170,7 @@ const ChatRoom = () => {
         {/* <i className="fa-regular fa-comment"></i> */}
         <span className="receiver-name">{receiverName}</span>
       </div>
-      <div className="messages">
+      <div className="messages" ref={containerRef}> 
      
         {messages.map((msg, index) => {
           const isReceiver = msg.senderName === receiverName;
@@ -174,7 +182,6 @@ const ChatRoom = () => {
             </div>
           );
         })}
-              <div ref={messagesEndRef}></div>
       </div>
       {loading && (
         <div className='loading' style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
@@ -183,7 +190,6 @@ const ChatRoom = () => {
       )}
       <div className="input-container">
         <input
-          ref={inputRef}
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
