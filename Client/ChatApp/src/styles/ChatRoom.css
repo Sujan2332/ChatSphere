@@ -111,3 +111,9 @@
   font-size: 30px;
   transform: rotateZ(40deg);
 }
+
+@media (max-width: 768px){
+  .chat-container{
+    border: none;
+  }
+}

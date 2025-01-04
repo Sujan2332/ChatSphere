@@ -112,7 +112,7 @@ const MobileLayout = ({ user, setUser }) => {
   const location = useLocation();
 
   return (
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: '100vh',background:"black" }}>
       {location.pathname === '/contacts' ? (
         <ContactList token={user} setUser={setUser} />
       ) : location.pathname.startsWith('/chat/') ? (
