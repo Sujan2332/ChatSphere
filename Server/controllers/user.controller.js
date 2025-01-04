@@ -4,7 +4,7 @@ const User = require("../models/user.model")
 
 exports.registerUser = async (req, res) => {
     try {
-        const { name, email, mobile, password, contacts = [] } = req.body;
+        const { name, email, mobile, password,avatar,contacts = [] } = req.body;
 
         // Check if the user already exists
         const existingUser = await User.findOne({
@@ -24,6 +24,7 @@ exports.registerUser = async (req, res) => {
             email,
             mobile,
             password: hashedPassword,
+            avatar,
             contacts: contacts.map((contact) => ({
                 name: contact.name,
                 mobile: contact.mobile,
@@ -48,6 +49,7 @@ exports.registerUser = async (req, res) => {
                 name: newUser.name,
                 email: newUser.email,
                 mobile: newUser.mobile,
+                avatar:newUser.avatar
             },
         });
     } catch (err) {
@@ -87,7 +89,7 @@ exports.loginUser = async (req, res) => {
         res.json({
             message: "User Logged in Successfully",
             token,
-            user: { id: user._id, name: user.name, email: user.email, mobile: user.mobile },
+            user: { id: user._id, name: user.name, email: user.email, mobile: user.mobile,avatar:user.avatar },
         });
     } catch (err) {
         console.error("Error Logging in User:", err);  // Log error for debugging
@@ -125,7 +127,7 @@ exports.fetchAvailableUsers = async (req, res) => {
         // Fetch all users except the logged-in user
         const availableUsers = await User.find(
             { _id: { $ne: currentUser } }, // Exclude the current user
-            { name: 1, mobile: 1 } // Select only the required fields
+            { name: 1, mobile: 1 ,avatar: 1} // Select only the required fields
         );
 
         res.json({ message: "Available users fetched successfully", users: availableUsers });

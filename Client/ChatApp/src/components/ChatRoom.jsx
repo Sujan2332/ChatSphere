@@ -2,10 +2,10 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { SocketContext } from '../SocketContext';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';  
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import "../styles/ChatRoom.css";
 
-const ChatRoom = ({ token }) => {
+const ChatRoom = () => {
   const { chatId } = useParams();
   const socket = useContext(SocketContext);
   const { state } = useLocation();
@@ -16,9 +16,30 @@ const ChatRoom = ({ token }) => {
   const [participants, setParticipants] = useState([]);
   const firstRender = useRef(true);  // Track first render to avoid socket listener re-setup
 
+  console.log(messages)
   const backend = import.meta.env.VITE_BACKEND;
 
+  const messagesEndRef = useRef(null);
+
+  const navigate = useNavigate();
+
+  // Function to scroll to the bottom
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  };
+
   useEffect(() => {
+    // Retrieve the token from localStorage
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      // Handle case when token is not available
+      navigate('/login'); // Redirect to login page if no token
+      return;
+    }
+
     // Fetch chat and participants details along with messages
     const fetchMessages = async () => {
       try {
@@ -68,10 +89,13 @@ const ChatRoom = ({ token }) => {
     return () => {
       socket.off('receiveMessage');
     };
-  }, [socket, chatId, token, receiverName,messages]);
+  }, [socket, chatId, receiverName, messages]);
 
   const handleSendMessage = async () => {
     try {
+      const token = localStorage.getItem('token');  // Retrieve token from localStorage
+      if (!token) return;
+
       const decodedToken = jwt_decode(token);
       const userId = decodedToken.id;
 
@@ -91,24 +115,30 @@ const ChatRoom = ({ token }) => {
     }
   };
 
+  const handleGoBack = () => {
+    navigate(`/contact`); // Go back to the previous page
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   return (
     <div className="chat-container">
-      <div className="chat-header" >
-      <i class="fa-regular fa-comment"></i>
-        <span className="receiver-name">{receiverName}</span> - <span className="sender-name">You</span>
+      <div className="chat-header">
+        <i className="fa-solid fa-arrow-left" style={{cursor:"pointer"}} onClick={handleGoBack}></i>
+        {/* <i className="fa-regular fa-comment"></i> */}
+        <span className="receiver-name">{receiverName}</span>
       </div>
-
       <div className="messages">
         {messages.map((msg, index) => {
           const isReceiver = msg.senderName === receiverName;
           return (
-            <div 
-              key={index} 
-              className={`message ${isReceiver ? 'receiver' : 'sender'}`}
-            >
+            <div key={index} className={`message ${isReceiver ? 'receiver' : 'sender'}`}>
               <div className="message-text">
                 <strong>{msg.senderName || 'You'}</strong>:<br/> {msg.content || msg._doc.text || 'No content available'}
               </div>
+              <div ref={messagesEndRef}></div>
             </div>
           );
         })}
@@ -121,7 +151,7 @@ const ChatRoom = ({ token }) => {
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."
         />
-        <button onClick={handleSendMessage}>Send</button>
+        <button onClick={handleSendMessage} className='send'><i class="fa-solid fa-location-arrow"></i></button>
       </div>
     </div>
   );

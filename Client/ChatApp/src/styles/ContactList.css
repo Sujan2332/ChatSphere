@@ -9,6 +9,9 @@
     margin: 0 auto;
     height: 100%;
     border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .ContactList .logout{
     background: none;
@@ -45,6 +48,7 @@
   .ContactList ul {
     list-style: none;
     padding: 0;
+  /* overflow-y: scroll; */
   }
   
   .ContactList li {
@@ -86,7 +90,30 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    
   }
   .availableusers i{
     font-size: 30px;
+  }
+
+  .user{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
+  @media (max-width: 768px){
+
+    .ContactList .logout{
+      /* border: 2px solid red; */
+      left: 350px;
+      padding: 10px 0px;
+      padding-bottom: 5px;
+      width: 50px;
+    }
   }

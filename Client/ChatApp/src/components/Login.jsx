@@ -12,6 +12,9 @@ const Login = ({ setUser }) => {
     try {
       const response = await axios.post(`${backend}/api/users/login`, { emailOrMobile, password });
       setUser(response.data.token);
+      localStorage.setItem('token',response.data.token)
+      localStorage.setItem('user',JSON.stringify(response.data.user))
+      window.location.reload();
     } catch (err) {
       setError('Invalid credentials');
     }

@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    avatar: {
+        type: String, // URL of the selected avatar
+        required: true, // Make it required if the avatar is mandatory during registration
+    },
     contacts:{
         type:[
         {
@@ -29,6 +33,6 @@ const userSchema = new mongoose.Schema({
         default:[]
 },
     createdAt:{type:Date,default:Date.now}
-},{ collection: 'users' } )
+})
 
 module.exports = mongoose.model("User",userSchema)
