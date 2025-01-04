@@ -142,11 +142,11 @@ const ChatRoom = () => {
             <div key={index} className={`message ${isReceiver ? 'receiver' : 'sender'}`}>
               <div className="message-text">
                 <strong>{msg.senderName || 'You'}</strong>:<br/> {msg.content || msg._doc.text || 'No content available'}
-              <div ref={messagesEndRef}></div>
               </div>
             </div>
           );
         })}
+              <div ref={messagesEndRef}></div>
       </div>
       {loading && (
         <div className='loading' style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
