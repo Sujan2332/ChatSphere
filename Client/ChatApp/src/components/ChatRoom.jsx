@@ -19,9 +19,7 @@ const ChatRoom = () => {
 
   console.log(messages)
   const backend = import.meta.env.VITE_BACKEND;
-
-  const messagesEndRef = useRef(null);
-  const messagesContainerRef = useRef(null); // Reference for the messages container
+ // Reference for the messages container
   const inputRef = useRef(null);
   const containerRef = useRef(null); // Create a reference for the message container
 
@@ -34,20 +32,7 @@ const ChatRoom = () => {
 
   const navigate = useNavigate();
 
-  // Function to scroll to the bottom
-  const scrollToBottom = () => {
-    if (messagesEndRef.current && isAtBottom()) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    }
-  };
-
-  // Check if the user is already at the bottom of the chat container
-  const isAtBottom = () => {
-    if (!messagesContainerRef.current) return false;
-    const { scrollHeight, scrollTop, clientHeight } = messagesContainerRef.current;
-    return scrollHeight - scrollTop === clientHeight;
-  };
-
+  // Function to scroll to the botto
   useEffect(() => {
     // Retrieve the token from localStorage
     const token = localStorage.getItem('token');
@@ -171,7 +156,6 @@ const ChatRoom = () => {
         <span className="receiver-name">{receiverName}</span>
       </div>
       <div className="messages" ref={containerRef}> 
-     
         {messages.map((msg, index) => {
           const isReceiver = msg.senderName === receiverName;
           return (
