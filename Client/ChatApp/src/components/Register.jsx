@@ -11,6 +11,7 @@ const Register = ({ setUser }) => {
   const [avatars, setAvatars] = useState([]);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [avatar,setAvatar] = useState(false)
 
   const backend = import.meta.env.VITE_BACKEND;
 
@@ -21,7 +22,7 @@ const Register = ({ setUser }) => {
     }
   
     setError('');
-    setLoading(true); // Start loading animation
+    setAvatar(true); // Start loading animation
     // setAvatars([]); // Clear existing avatars while loading
   
     const avatarUrls = Array.from({ length: 4 }, () =>
@@ -50,7 +51,7 @@ const Register = ({ setUser }) => {
       console.error('Error fetching avatars:', err);
       setError('Failed to generate avatars. Refresh Page.');
     } finally {
-      setLoading(false); // End loading animation
+      setAvatar(false); // End loading animation
     }
   };
   
@@ -60,6 +61,7 @@ const Register = ({ setUser }) => {
       setError('Please select an avatar.');
       return;
     }
+    setLoading(true)
     try {
       const response = await axios.post(`${backend}/api/users/register`, {
         name,
@@ -73,13 +75,20 @@ const Register = ({ setUser }) => {
       localStorage.setItem('user',JSON.stringify(response.data.user))
       window.location.reload()
     } catch (err) {
-      setError('Registration failed');
+      setError(err.response.data.message || `An Error Occurred: ${err.message}`);
+    } finally{
+      setLoading(false)
     }
   };
 
   return (
     <div className="Register">
-      <div className="RegisterContainer">
+      {loading && (
+        <div className='loader-overlay'>
+          <div className='loader'></div>
+        </div>
+      )}
+      <div className="RegisterContainer" style={{height:"85vh"}}>
         <h1>
         <svg width="40px" height="40px" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -138,7 +147,7 @@ const Register = ({ setUser }) => {
               ))}
             </div>
             <button className="RegenerateButton" onClick={generateAvatars} disabled={loading}>
-            {loading ? <span className="loading-spinner"></span> : 'Regenerate Avatars'}
+            {avatar ? <span className="loading-spinner"></span> : 'Regenerate Avatars'}
             </button>
           </div>
         )}
@@ -147,7 +156,7 @@ const Register = ({ setUser }) => {
         <h3>
           Already Existing User? <a href="/#/login">Login</a>
         </h3>
-        {error && <p className='error'>{error}</p>}
+        {error && <p className='error' style={{color:"red"}}>{error}</p>}
       </div>
     </div>
   );

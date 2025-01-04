@@ -48,7 +48,9 @@
   .ContactList ul {
     list-style: none;
     padding: 0;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
+  /* border: 2px solid red; */
+  max-height: 550px;
   }
   
   .ContactList li {
@@ -123,5 +125,8 @@
     }
     .ContactList{
       border: 0px solid red;
+    }
+    .ContactList ul{
+      max-height: 480px;
     }
   }

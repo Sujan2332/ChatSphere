@@ -8,6 +8,7 @@ const ContactList = ({ setUser }) => {
   const [contacts, setContacts] = useState([]);
   const [availableUsers, setAvailableUsers] = useState([]);
   const [token, setToken] = useState(null);
+  const [loading,setLoading] = useState(false)
   const navigate = useNavigate();
 
   const backend = import.meta.env.VITE_BACKEND;
@@ -33,6 +34,7 @@ const ContactList = ({ setUser }) => {
   useEffect(() => {
     if (token) {
       const fetchContactsAndUsers = async () => {
+        setLoading(true)
         try {
           // Fetch contacts
           const contactsResponse = await axios.get(`${backend}/api/users/contacts`, {
@@ -47,6 +49,8 @@ const ContactList = ({ setUser }) => {
           setAvailableUsers(usersResponse.data.users);
         } catch (err) {
           console.error('Error fetching data:', err);
+        } finally{
+          setLoading(false)
         }
       };
 
@@ -133,6 +137,11 @@ const ContactList = ({ setUser }) => {
 
         <h3>Available Users :</h3>
         <ul>
+        {loading && (
+        <div className="loading" style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+          <div className='loader'></div>
+        </div>
+      )}
           {availableUsers.map((user) => (
             <li className='availableusers' key={user._id}>
               <img src={user.avatar ? user.avatar : profile} alt={user.avatar} width="50px" style={{ borderRadius: "50%" }} />

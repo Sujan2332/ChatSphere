@@ -10,6 +10,7 @@ const ChatRoom = () => {
   const socket = useContext(SocketContext);
   const { state } = useLocation();
   const receiverName = state?.receiverName;
+  const [loading,setLoading] = useState(false)
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
@@ -42,6 +43,7 @@ const ChatRoom = () => {
 
     // Fetch chat and participants details along with messages
     const fetchMessages = async () => {
+      setLoading(true)
       try {
         const response = await axios.get(`${backend}/api/chats/${chatId}/messages`, {
           headers: { Authorization: `Bearer ${token}` }
@@ -53,6 +55,8 @@ const ChatRoom = () => {
         }
       } catch (err) {
         console.error('Error fetching messages:', err);
+      } finally{
+        setLoading(false)
       }
     };
 
@@ -131,6 +135,7 @@ const ChatRoom = () => {
         <span className="receiver-name">{receiverName}</span>
       </div>
       <div className="messages">
+     
         {messages.map((msg, index) => {
           const isReceiver = msg.senderName === receiverName;
           return (
@@ -143,7 +148,11 @@ const ChatRoom = () => {
           );
         })}
       </div>
-
+      {loading && (
+        <div className='loading' style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+          <div className='loader'></div>
+        </div>
+      )}
       <div className="input-container">
         <input
           type="text"
