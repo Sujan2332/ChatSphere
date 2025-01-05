@@ -1,8 +1,8 @@
 # *🌐 ChatSphere*
 ## *Welcome to ChatSphere, a modern and sleek real-time chat application built with React and Node.js. Connect with friends, family, and colleagues seamlessly with our intuitive interface and robust backend.*
 
-# *📺Preview*
-## *[👉 Enter ChatSphere Now 💬](https://chatsphere-oepd.onrender.com/#/)*
+## *📺Preview*
+### *[👉 Enter ChatSphere Now 💬](https://chatsphere-oepd.onrender.com/#/)*
 
 ## *🚀 Features*
 
