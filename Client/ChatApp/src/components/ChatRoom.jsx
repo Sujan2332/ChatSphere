@@ -208,6 +208,10 @@ useEffect(() => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSendMessage();
+            }}}
         />
         <button onClick={handleSendMessage} className='send'><i class="fa-solid fa-paper-plane"></i></button>
       </div>
