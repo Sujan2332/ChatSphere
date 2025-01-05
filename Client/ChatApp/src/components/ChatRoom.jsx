@@ -161,7 +161,8 @@ const ChatRoom = () => {
           return (
             <div key={index} className={`message ${isReceiver ? 'receiver' : 'sender'}`}>
               <div className="message-text">
-                <strong>{msg.senderName || 'You'}</strong>:<br/> {msg.content || msg._doc.text || 'No content available'}
+                <strong>{msg.senderName || 'You'}</strong>: 
+                <p>{msg.content || msg._doc.text || 'No content available'}</p>
               </div>
             </div>
           );
@@ -178,8 +179,12 @@ const ChatRoom = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSendMessage();
+            }}}
         />
-        <button onClick={handleSendMessage} className='send'><i class="fa-solid fa-location-arrow"></i></button>
+        <button onClick={handleSendMessage} className='send'><i class="fa-solid fa-paper-plane"></i></button>
       </div>
     </div>
   );

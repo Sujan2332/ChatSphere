@@ -61,14 +61,28 @@
 
 .sender .message-text {
   background-color: #4e0eff99;
-  text-align: right;
+  /* text-align: right; */
   margin-left: auto;
+}
+.sender .message-text strong{
+  text-align: right;
+}
+.sender .message-text p{
+text-align: right;
 }
 
 .receiver .message-text {
   background-color: #2C2C3E;
-  text-align: left;
+  /* text-align: left; */
   margin-right: auto;
+}
+
+.receiver .message-text strong{
+  text-align: left;
+  width: auto;
+}
+.receiver .message-text p{
+text-align: left;
 }
 
 .input-container {
@@ -109,9 +123,10 @@
   padding-right: 15px;
   padding-bottom: 9px;
 }
-.fa-location-arrow{
+.fa-paper-plane{
   font-size: 30px;
-  transform: rotateZ(40deg);
+  /* transform: rotateZ(40deg); */
+  padding: 2px;
 }
 
 @media (max-width: 768px){
