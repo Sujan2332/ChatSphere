@@ -162,6 +162,7 @@ const ChatRoom = () => {
     <div 
       className="start-conversation" 
       onClick={() => {
+        
         setMessage(`Hello, ${receiverName} 👋`);
         handleSendMessage();
       }}
