@@ -205,4 +205,4 @@ git push origin feature/your-feature
 
 ### *Have questions or feedback? Reach out to us at saisujan.s03@gmail.com.*
 
-Thank you for using ChatSphere! We hope you enjoy your chatting experience. 🚀
+*Thank you for using ChatSphere! We hope you enjoy your chatting experience. 🚀*
