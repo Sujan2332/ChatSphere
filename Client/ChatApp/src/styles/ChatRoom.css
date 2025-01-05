@@ -69,28 +69,8 @@
   padding: 15px;
   overflow-y: scroll;
   background-color: #1A1A2E;
-  /* background-image: url('../assets/1pX9.gif'); */
-  /* background-image: url('../assets/2iiH.gif'); */
-  /* background-image: url('../assets/3M3T.gif'); */
-  /* background-image: url('../assets/3SwC.gif'); */
-  /* background-image: url('../assets/5zWt.gif'); */
-  /* background-image: url('../assets/7gQj.gif'); */
-  /* background-image: url('../assets/7sXy.gif'); */
-  /* background-image: url('../assets/9vry.gif'); */
-  /* background-image: url('../assets/BHFO.gif'); */
-  /* background-image: url('../assets/Cal.gif'); */
-  /* background-image: url('../assets/Cwgf.gif'); */
-  /* background-image: url('../assets/fxVE.gif'); */
-  /* background-image: url('../assets/h01.gif'); */
-  /* background-image: url('../assets/IrF.gif'); */
-  /* background-image: url('../assets/IrM.gif'); */
-  /* background-image: url('../assets/LCPT.gif'); */
-  /* background-image: url('../assets/LyKP.gif'); */
-  /* background-image: url('../assets/WBVi.gif'); */
   background-image: url('../assets/LCPT.gif');
   background: transparent;
-  /* background-image: url('../assets/sphere2.gif'); */
-  /* background-image: url('../assets/sphere.gif'); */
   background-repeat: no-repeat; /* Prevent the image from repeating */
   background-size: cover; /* Make the image cover the entire width and height */
   background-position: center; /* Center the image */
@@ -226,8 +206,6 @@ text-align: left;
   background-image: url('../assets/msphere.gif');
   }
   .messages{
-  background-image: url('../assets/LCPT.gif');
-  /* background-image: url('../assets/msphere.gif'); */
   background: transparent;
   }
 }
