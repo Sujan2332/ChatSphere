@@ -18,6 +18,16 @@ const ChatRoom = () => {
   const [message, setMessage] = useState('');
   const [participants, setParticipants] = useState([]);
   const firstRender = useRef(true);  // Track first render to avoid socket listener re-setup
+  const [isVisible, setIsVisible] = useState(false);
+
+useEffect(() => {
+  // Set the div to be visible after 3 seconds if there are no messages
+  const timer = setTimeout(() => {
+    setIsVisible(true);
+  }, 1000); // 3 seconds delay
+  
+  return () => clearTimeout(timer); // Cleanup timeout if component unmounts
+}, []);
 
   console.log(messages)
   const backend = import.meta.env.VITE_BACKEND;
@@ -162,16 +172,13 @@ const ChatRoom = () => {
     <div 
       className="start-conversation" 
       onClick={() => {
-        
+      
         setMessage(`Hello, ${receiverName} 👋`);
         handleSendMessage();
       }}
-      style={{
-        cursor: "pointer",
-        textAlign: "center",
-      }}
+      
     >
-      <div className='conversation-main'>
+      <div className={`conversation-main ${isVisible ? 'visible' : 'hidden'}`}>
         <h3>No Messages Here Yet, <br /> Send a Message or Double Tap here 👇</h3>
         <img src={hi} alt="" width="200px" height="200px" />
         <h3 style={{textDecoration:"underline"}}>Say Hello to Start the <br />Conversation!!!</h3>

@@ -42,6 +42,8 @@
   background-repeat: no-repeat; /* Prevent the image from repeating */
   background-size: cover; /* Make the image cover the entire width and height */
   background-position: center; /* Center the image */
+  cursor: pointer;
+  text-align: center;
 
 }
 .conversation-main{
@@ -58,6 +60,32 @@
   color: black;
   border-radius: 15px;
 }
+/* Initially hidden */
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-in-out, visibility 0s 1s; /* Fade-out with delay */
+}
+
+/* Visible state */
+.visible {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease-in-out; /* Fade-in effect */
+  background: rgba(255, 255, 255, 0.421);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 45vh;
+  height: 45vh;
+  color: black;
+  border-radius: 15px;
+}
+
+
 .conversation-main img{
   /* border-bottom: 2px solid black; */
   border-radius: 15px;
