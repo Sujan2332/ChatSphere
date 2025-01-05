@@ -3,6 +3,10 @@
   flex-direction: column;
   height: 100vh;
   background-color: #131324;
+  background-image: url('../assets/LCPT.gif');
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: cover; /* Make the image cover the entire width and height */
+  background-position: center; /* Center the image */
   color: white;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -27,6 +31,37 @@
   font-size: 33px;
 }
 
+.start-conversation{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-image: url('../assets/2iiH.gif'); */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: cover; /* Make the image cover the entire width and height */
+  background-position: center; /* Center the image */
+
+}
+.conversation-main{
+  /* border: 2px solid red; */
+  background: rgba(255, 255, 255, 0.421);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 45vh;
+  height: 45vh;
+  /* margin-top: -50px; */
+  color: black;
+  border-radius: 15px;
+}
+.conversation-main img{
+  /* border-bottom: 2px solid black; */
+  border-radius: 15px;
+}
 .messages {
   flex: 1;
   display: flex;
@@ -34,6 +69,31 @@
   padding: 15px;
   overflow-y: scroll;
   background-color: #1A1A2E;
+  /* background-image: url('../assets/1pX9.gif'); */
+  /* background-image: url('../assets/2iiH.gif'); */
+  /* background-image: url('../assets/3M3T.gif'); */
+  /* background-image: url('../assets/3SwC.gif'); */
+  /* background-image: url('../assets/5zWt.gif'); */
+  /* background-image: url('../assets/7gQj.gif'); */
+  /* background-image: url('../assets/7sXy.gif'); */
+  /* background-image: url('../assets/9vry.gif'); */
+  /* background-image: url('../assets/BHFO.gif'); */
+  /* background-image: url('../assets/Cal.gif'); */
+  /* background-image: url('../assets/Cwgf.gif'); */
+  /* background-image: url('../assets/fxVE.gif'); */
+  /* background-image: url('../assets/h01.gif'); */
+  /* background-image: url('../assets/IrF.gif'); */
+  /* background-image: url('../assets/IrM.gif'); */
+  /* background-image: url('../assets/LCPT.gif'); */
+  /* background-image: url('../assets/LyKP.gif'); */
+  /* background-image: url('../assets/WBVi.gif'); */
+  background-image: url('../assets/LCPT.gif');
+  background: transparent;
+  /* background-image: url('../assets/sphere2.gif'); */
+  /* background-image: url('../assets/sphere.gif'); */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: cover; /* Make the image cover the entire width and height */
+  background-position: center; /* Center the image */
   border-radius: 5px;
   margin-bottom: 10px;
 }
@@ -99,6 +159,9 @@ text-align: left;
   border-radius: 50px;
   margin-right: 10px;
   font-size: 20px;
+  background: black;
+  color: white;
+  padding-left: 20px;
   font-weight: 600;
 }
 
@@ -132,5 +195,39 @@ text-align: left;
 @media (max-width: 768px){
   .chat-container{
     border: none;
+  }
+  .start-conversation{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
+  }
+  .conversation-main{
+    /* border: 2px solid red; */
+    background: rgba(255, 255, 255, 0.421);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 45vh;
+    height: 50vh;
+    /* margin-top: -50px; */
+    color: black;
+    border-radius: 15px;
+  }
+  .conversation-main img{
+    /* border-bottom: 2px solid black; */
+    border-radius: 15px;
+  }
+  .chat-container{
+  background-image: url('../assets/msphere.gif');
+  }
+  .messages{
+  background-image: url('../assets/LCPT.gif');
+  /* background-image: url('../assets/msphere.gif'); */
+  background: transparent;
   }
 }

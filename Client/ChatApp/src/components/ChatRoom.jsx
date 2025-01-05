@@ -4,6 +4,8 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';  
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import "../styles/ChatRoom.css";
+import robot from "../../src/assets/robot.gif"
+import hi from "../../src/assets/hi.gif"
 
 const ChatRoom = () => {
   const { chatId } = useParams();
@@ -156,7 +158,26 @@ const ChatRoom = () => {
         <span className="receiver-name">{receiverName}</span>
       </div>
       <div className="messages" ref={containerRef}> 
-        {messages.map((msg, index) => {
+      {messages.length === 0 ? (
+    <div 
+      className="start-conversation" 
+      onClick={() => {
+        setMessage(`Hello, ${receiverName} 👋`);
+        handleSendMessage();
+      }}
+      style={{
+        cursor: "pointer",
+        textAlign: "center",
+      }}
+    >
+      <div className='conversation-main'>
+        <h3>No Messages Here Yet, <br /> Send a Message or Double Tap here 👇</h3>
+        <img src={hi} alt="" width="200px" height="200px" />
+        <h3 style={{textDecoration:"underline"}}>Say Hello to Start the <br />Conversation!!!</h3>
+      </div>
+    </div>
+  ) :(
+        messages.map((msg, index) => {
           const isReceiver = msg.senderName === receiverName;
           return (
             <div key={index} className={`message ${isReceiver ? 'receiver' : 'sender'}`}>
@@ -166,7 +187,7 @@ const ChatRoom = () => {
               </div>
             </div>
           );
-        })}
+        }))}
       </div>
       {loading && (
         <div className='loading' style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
@@ -179,10 +200,6 @@ const ChatRoom = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleSendMessage();
-            }}}
         />
         <button onClick={handleSendMessage} className='send'><i class="fa-solid fa-paper-plane"></i></button>
       </div>
