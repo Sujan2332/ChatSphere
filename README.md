@@ -1,4 +1,4 @@
-# <p align+"center"> *🌐 ChatSphere* </p>
+# <p align="center"> *🌐 ChatSphere* </p>
 ## *Welcome to ChatSphere, a modern and sleek real-time chat application built with React and Node.js. Connect with friends, family, and colleagues seamlessly with our intuitive interface and robust backend.*
 
 ## *📺Preview*
