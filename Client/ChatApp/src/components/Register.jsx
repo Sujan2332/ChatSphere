@@ -25,9 +25,19 @@ const Register = ({ setUser }) => {
     setAvatar(true); // Start loading animation
     // setAvatars([]); // Clear existing avatars while loading
   
-    const avatarUrls = Array.from({ length: 4 }, () =>
-      `https://api.multiavatar.com/${encodeURIComponent(name + Math.random().toString(36).substring(2))}.svg`
-    );
+    // const avatarUrls = Array.from({ length: 4 }, () =>
+    //   `https://api.multiavatar.com/${encodeURIComponent(name + Math.random().toString(36).substring(2))}.svg`
+    // );
+        // const avatarUrls = Array.from({ length: 4 }, (_, index) => {
+    //   const seed = encodeURIComponent(name + Math.random().toString(36).substring(2) + index);
+    //   const robohashUrl = `https://robohash.org/${seed}.svg`;
+    //   return [robohashUrl];
+    // }).flat();
+
+    const sets = ['set2', 'set1', 'set1', 'set2'];
+    const avatarUrls = sets.map((set) => {
+    return `https://cors-anywhere.herokuapp.com/https://robohash.org/${encodeURIComponent(name + Math.random().toString(36).substring(2))}.png?set=${set}`;
+    });
   
     try {
       // Fetch all avatars in parallel, allowing for partial failures
