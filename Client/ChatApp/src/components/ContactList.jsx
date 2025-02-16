@@ -143,13 +143,20 @@ const ContactList = ({ setUser }) => {
         </div>
       )}
           {availableUsers.map((user) => (
-            <li className='availableusers' key={user._id}>
-              <img src={user.avatar ? user.avatar : profile} alt={user.avatar} width="50px" style={{ borderRadius: "50%" }} />
-              {user.name} <br />
-              {user.mobile}
-              <button onClick={() => startChat(user._id, user.name)}>Chat</button>
-            </li>
-          ))}
+  <li className='availableusers' key={user._id}>
+    <img 
+      src={user.avatar || profile} 
+      alt={user.name} 
+      width="50px" 
+      style={{ borderRadius: "50%" }} 
+      onError={(e) => { e.target.onerror = null; e.target.src = profile; }}
+    />
+    {user.name} <br />
+    {user.mobile}
+    <button onClick={() => startChat(user._id, user.name)}>Chat</button>
+  </li>
+))}
+
         </ul>
       </div>
 
