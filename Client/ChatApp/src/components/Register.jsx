@@ -36,13 +36,11 @@ const Register = ({ setUser }) => {
 
     
     const sets = ['set2', 'set1', 'set1', 'set2'];
-    const avatarUrls = await Promise.all(sets.map((set) => {
-      return fetch(`https://cors-anywhere.herokuapp.com/https://robohash.org/${encodeURIComponent(name + Math.random().toString(36).substring(2))}.png?set=${set}`, {
-        headers: {
-          origin: 'https://robohash.org',
-        },
-      }).then(response => response.url);
-    }));
+const avatarUrls = await Promise.all(sets.map((set) => {
+  return fetch(`https://robohash.org/${encodeURIComponent(name + Math.random().toString(36).substring(2))}.png?set=${set}`, {
+    mode: 'cors',
+  }).then(response => response.url);
+}));
     
   
     try {
