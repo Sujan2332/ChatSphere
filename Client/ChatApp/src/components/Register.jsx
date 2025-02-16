@@ -37,7 +37,11 @@ const Register = ({ setUser }) => {
     
     const sets = ['set2', 'set1', 'set1', 'set2'];
     const avatarUrls = sets.map((set) => {
-    return `https://cors-anywhere.herokuapp.com/https://robohash.org/${encodeURIComponent(name + Math.random().toString(36).substring(2))}.png?set=${set}`;
+      return fetch(`https://cors-anywhere.herokuapp.com/https://robohash.org/${encodeURIComponent(name + Math.random().toString(36).substring(2))}.png?set=${set}`, {
+        headers: {
+          origin: 'https://robohash.org',
+        },
+      });
     });
   
     try {
