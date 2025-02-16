@@ -42,6 +42,7 @@ const avatarUrls = await Promise.all(sets.map((set) => {
   }).then(response => response.url);
 }));
     
+
   
     try {
       // Fetch all avatars in parallel, allowing for partial failures
